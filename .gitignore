@@ -1,6 +1,7 @@
 # windows
 Thumbs.db
 Desktop.ini
+*.bat
 
 #bak
 *.bak
