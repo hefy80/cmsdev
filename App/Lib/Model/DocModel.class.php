@@ -118,18 +118,19 @@ class DocModel extends Model{
 		if (!$logs || count($logs)<=0)
 		{
 			//$logs[] = $path;
+			$auth = '--no-auth-cache --username devcms --password devcms';
 
 			//UPDATE，获取最新log
-			$cmd = 'svn update --no-auth-cache --username devcms --password devcms "'.$_SERVER['DOCUMENT_ROOT'].'/'.APP_UPLOADPATH.$path.'"';
+			$cmd = 'svn update '.$auth.' "'.$_SERVER['DOCUMENT_ROOT'].'/'.APP_UPLOADPATH.$path.'"';
 			exec($cmd);
 
 			//读取路径节点的svn log
-			$cmd = 'svn log -l 2 --no-auth-cache --username devcms --password devcms "'.$_SERVER['DOCUMENT_ROOT'].'/'.APP_UPLOADPATH.$path.'"';
+			$cmd = 'svn log -l 2 '.$auth.' "'.$_SERVER['DOCUMENT_ROOT'].'/'.APP_UPLOADPATH.$path.'"';
 			//$logs[] = '**********cmd='.$cmd;
 			exec($cmd, $logs);
 
 			//读取路径节点的svn diff
-			$cmd = 'svn diff -r PREV:HEAD --no-auth-cache --username devcms --password devcms "'.$_SERVER['DOCUMENT_ROOT'].'/'.APP_UPLOADPATH.$path.'"';
+			$cmd = 'svn diff -r PREV:HEAD '.$auth.' "'.$_SERVER['DOCUMENT_ROOT'].'/'.APP_UPLOADPATH.$path.'"';
 			//$logs[] = '**********cmd='.$cmd;
 			exec($cmd, $logs);
 
