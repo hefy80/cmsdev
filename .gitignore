@@ -6,8 +6,8 @@ Desktop.ini
 *.bak
 
 # Generated files
-Cache/
-Runtime/
+Cache/*
+Runtime/*
 
 # UGC
 Upload/
