@@ -1,0 +1,14 @@
+# windows
+Thumbs.db
+Desktop.ini
+
+#bak
+*.bak
+
+# Generated files
+Cache/
+Runtime/
+
+# UGC
+Upload/
+
