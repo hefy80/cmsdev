@@ -54,9 +54,7 @@
 												$ext = substr(strrchr($k,'.'),1);
 												if ($ext == 'md' || $v['type']!='file')
 												{
-													if ($v['type']=='file') {
-														$title = substr($k,0,strrpos($k,'.')); //去掉后缀
-													}
+													$title = ($v['type']=='file') ? substr($k,0,strrpos($k,'.')) : $k; //去掉md后缀
 													$title = split('\+',$title,2);
 
 													echo "<tr>";
