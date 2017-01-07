@@ -47,17 +47,26 @@
 										<?php
 											foreach ($node['children'] as $k=>$v)
 											{
-												$title = split("\+",$k,2);
 												$path = urlencode(base64_encode($v['path']));
 												$icon = ($v['type']=='file') ? 'icon-file' : 'icon-folder-open';
 
-												echo "<tr>";
-												echo "<td><i class=\"".$icon."\"</i></td>";
-												echo "<td><a href=\"__APP__/Doc/index?path=".$path."\">".$title[0]."</a></td>";
-												echo "<td><a href=\"__APP__/Doc/index?path=".$path."\">".$title[1]."</a></td>";
-												echo "<td>".date('Y-m-d H:i:s',$v['updtime'])."</td>";
-												echo "<td>".count($v['children'])."</td>";
-												echo "</tr>";
+												//只展示目录和md文件
+												$ext = substr(strrchr($k,'.'),1);
+												if ($ext == 'md' || $v['type']!='file')
+												{
+													if ($v['type']=='file') {
+														$title = substr($k,0,strrpos($k,'.')); //去掉后缀
+													}
+													$title = split('\+',$title,2);
+
+													echo "<tr>";
+													echo "<td><i class=\"".$icon."\"</i></td>";
+													echo "<td><a href=\"__APP__/Doc/index?path=".$path."\">".$title[0]."</a></td>";
+													echo "<td><a href=\"__APP__/Doc/index?path=".$path."\">".$title[1]."</a></td>";
+													echo "<td>".date('Y-m-d H:i:s',$v['updtime'])."</td>";
+													echo "<td>".count($v['children'])."</td>";
+													echo "</tr>";
+												}
 											}
 										?>
 										</tbody>
